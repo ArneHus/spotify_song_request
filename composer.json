@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "jwilsson/spotify-web-api-php": "^3.6"
+        "jwilsson/spotify-web-api-php": "^3.6",
+        "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -37,7 +38,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "SpotifyWebAPI\\": "vendor/jwilsson/spotify-web-api-php/src/"
         }
     },
     "autoload-dev": {
