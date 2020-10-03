@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use SpotifyWebAPI;
 use Illuminate\Http\Request;
+use App\Models\Key;
 
 class SpotifyController extends Controller
 {
     public function search_songs(){
+        $clientId = Key::where('name', 'clientID_noLogin')->first();
+        $clientSecret = Key::where('name', 'clientSecret_noLogin')->first();
+
         $session = new SpotifyWebAPI\Session(
-            "Kan je lekker toch niet zien",
-            "Deze mag je ook niet zien hahah"
+            $clientId->key,
+            $clientSecret->key
         );
 
         $session->requestCredentialsToken();
@@ -43,7 +47,7 @@ class SpotifyController extends Controller
                     $html .= '<div class="row text-center">';
                 }
 
-                $html .= "<div class='col-4'><div class='card mb-5 mx-3' style='width: 18rem;'><img class='card-img-top' src='$image' alt='Card image cap'><div class='card-body'><h5 class='card-title'>$name</h5><p class='card-text'>$artist</p></div></div></div>";
+                $html .= "<div class='row song_container'><div class='col-4'><img src='$image' alt='song_thumbnail' class='song_thumbnail'></div><div class='col-8 song_text_container'><div class='song_info'><h5>$name</h5><p>$artist</p></div></div></div>";
 
                 if ($counter % 3 == 2) {
                     $html .= "</div>";
@@ -55,5 +59,9 @@ class SpotifyController extends Controller
             $html .= "<div class='alert alert-danger alert-dismissible fade show' role='alert'>No songs to show<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
         }
         return $html;
+    }
+
+    public function connect_spotify(){
+
     }
 }

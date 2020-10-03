@@ -19,3 +19,10 @@ Route::get('/', function () {
 });
 
 Route::post('/get_songs', [SpotifyController::class, 'search_songs']);
+
+Route::get('/test', function () {
+    return view('test');
+});
+
+Route::post('/authenticate_spotify', [SpotifyController::class, 'connect_spotify']);
+

@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.song_thumbnail_container {
+    height: 100%;
+    position: relative;
+}
+
+.song_thumbnail {
+    max-width: 4.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.song_container {
+    background-color: #212121;
+    margin: 0.25rem 0.75rem;
+    border-radius: 5px;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+.song_info {
+    color: #b3b3b3;
+    display: block;
+    padding: 10px 0;
+}
+
+.song_info h5, .song_info p {
+    margin-bottom: 0;
+}
+
+.song_text_container {
+    border-left: 1px solid #1db954;
+}

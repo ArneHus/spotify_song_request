@@ -14,13 +14,14 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{asset('css/custom.css')}}">
     </head>
     <body>
     <div class="container">
 
         <form action="" method="POST">
             <div class="row mt-4">
-                <div class="col-8">
+                <div class="col-12">
                     <div class="form-group">
                         <label for="song_name">Search song:</label>
                         <input type="text" class="form-control" id="song_name" name="song_name">
