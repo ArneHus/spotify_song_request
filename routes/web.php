@@ -24,5 +24,10 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::post('/authenticate_spotify', [SpotifyController::class, 'connect_spotify']);
+Route::get('/authenticate_spotify', [SpotifyController::class, 'connect_spotify']);
+Route::get('/get_token', [SpotifyController::class, 'get_token']);
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

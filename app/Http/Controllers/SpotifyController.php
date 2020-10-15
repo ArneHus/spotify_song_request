@@ -62,6 +62,55 @@ class SpotifyController extends Controller
     }
 
     public function connect_spotify(){
+        $clientId = Key::where('name', 'clientID_noLogin')->first();
+        $clientSecret = Key::where('name', 'clientSecret_noLogin')->first();
+        $redirectUri = "http://localhost:80/spotify_song_request/public/get_token";
 
+        $session = new SpotifyWebAPI\Session(
+            $clientId->key,
+            $clientSecret->key,
+            $redirectUri
+        );
+
+        $options = [
+            'scope' => [
+                'playlist-modify-private',
+                'user-read-private',
+            ],
+            'auto_refresh' => true,
+        ];
+
+        header('Location: ' . $session->getAuthorizeUrl($options));
+        die();
+    }
+
+    public function get_token(){
+        $clientId = Key::where('name', 'clientID_noLogin')->first();
+        $clientSecret = Key::where('name', 'clientSecret_noLogin')->first();
+        $redirectUri = "http://localhost:80/spotify_song_request/public/get_token";
+
+        $session = new SpotifyWebAPI\Session(
+            $clientId->key,
+            $clientSecret->key,
+            $redirectUri
+        );
+
+        // Request a access token using the code from Spotify
+        $session->requestAccessToken($_GET['code']);
+
+        $accessToken = $session->getAccessToken();
+        $refreshToken = $session->getRefreshToken();
+
+        // Store the access and refresh tokens somewhere. In a database for example.
+
+        $api = new SpotifyWebAPI\SpotifyWebAPI();
+
+        $api->setAccessToken($accessToken);
+
+        $data = $api->me();
+
+        $profile_data = json_decode(json_encode($data), true);
+
+        return view('test')->with("profile_data", $profile_data);
     }
 }

@@ -18,7 +18,11 @@
 </head>
 <body>
 <div class="container">
-    <p><a href="/authenticate_spotify">Verbind je spotify account</a></p>
+    <p><a href="authenticate_spotify">Verbind je spotify account</a></p>
+
+    @if (isset($profile_data))
+        {{$profile_data['display_name']}}
+    @endif
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
