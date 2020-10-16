@@ -26,3 +26,7 @@ Route::get('/test', function () {
 
 Route::get('/authenticate_spotify', [SpotifyController::class, 'connect_spotify']);
 Route::get('/get_token', [SpotifyController::class, 'get_token']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
